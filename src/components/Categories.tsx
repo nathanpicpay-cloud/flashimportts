@@ -38,8 +38,11 @@ export default function Categories() {
                   alt={cat.name} 
                   referrerPolicy="no-referrer"
                   loading="lazy"
-                  onError={(e) => { e.currentTarget.src = "https://via.placeholder.com/600x800/121212/FFFFFF?text=Categoria"; }}
-                  className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity"
+                  onError={(e) => { 
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80"; 
+                  }}
+                  className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/50 to-transparent"></div>
               </div>

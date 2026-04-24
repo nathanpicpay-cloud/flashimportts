@@ -51,8 +51,11 @@ export default function FeaturedProducts() {
                   alt={product.name} 
                   referrerPolicy="no-referrer"
                   loading="lazy"
-                  onError={(e) => { e.currentTarget.src = "https://via.placeholder.com/600x800/121212/FFFFFF?text=Imagem+Indisponivel"; }}
-                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity hover:mix-blend-normal"
+                  onError={(e) => { 
+                    e.currentTarget.onerror = null; 
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80"; 
+                  }}
+                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
                 
                 {/* Overlay gradient for better shadow/depth */}

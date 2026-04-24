@@ -241,7 +241,10 @@ function ProductsView() {
                 alt={p.name} 
                 referrerPolicy="no-referrer" 
                 loading="lazy" 
-                onError={(e) => { e.currentTarget.src = "https://via.placeholder.com/600x800/121212/FFFFFF?text=Imagem+Indisponivel"; }}
+                onError={(e) => { 
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80"; 
+                }}
                 className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" 
               />
               {p.discount && <div className="absolute top-2 left-2 bg-[#FFC107] text-black text-[10px] font-bold px-2 py-0.5 rounded-sm">{p.discount}</div>}
@@ -305,7 +308,10 @@ function CategoriesView() {
                 alt={c.name} 
                 referrerPolicy="no-referrer"
                 loading="lazy"
-                onError={(e) => { e.currentTarget.src = "https://via.placeholder.com/600x400/121212/FFFFFF?text=Categoria"; }}
+                onError={(e) => { 
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80"; 
+                }}
                 className="w-full h-full object-cover" 
               />
             </div>
