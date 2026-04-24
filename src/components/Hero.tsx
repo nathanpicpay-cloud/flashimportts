@@ -20,7 +20,7 @@ export default function Hero() {
             className="flex flex-col items-center justify-center text-center lg:text-left lg:items-start relative"
           >
             <div className="flex flex-col relative z-10 w-full lg:w-auto items-center lg:items-start mb-4 sm:mb-6">
-              <img 
+              <img referrerPolicy="no-referrer" 
                 src={hero.logoUrl} 
                 alt="Flash Imports" 
                 className="w-full max-w-[280px] sm:max-w-lg lg:max-w-xl object-contain drop-shadow-2xl"

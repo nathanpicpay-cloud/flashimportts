@@ -25,7 +25,7 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-3 cursor-pointer">
           <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-white/10 p-0.5 bg-black flex items-center justify-center">
-            <img 
+            <img referrerPolicy="no-referrer" 
               src="https://i.imgur.com/qtIpeq8.png" 
               alt="Flash Imports Logo" 
               className="w-full h-full object-cover rounded-full"
@@ -82,7 +82,7 @@ export default function Navbar() {
               <div className="flex items-center justify-between mb-10">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10 p-0.5 bg-black flex items-center justify-center">
-                    <img src="https://i.imgur.com/qtIpeq8.png" alt="Logo" className="w-full h-full object-cover rounded-full" />
+                    <img referrerPolicy="no-referrer" src="https://i.imgur.com/qtIpeq8.png" alt="Logo" className="w-full h-full object-cover rounded-full" />
                   </div>
                   <span className="text-lg font-black font-heading tracking-tighter uppercase italic text-white leading-none">Flash <span className="text-[#FFC107]">Imports</span></span>
                 </div>

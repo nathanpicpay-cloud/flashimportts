@@ -46,7 +46,7 @@ export default function FeaturedProducts() {
                   <Heart className="w-5 h-5" />
                 </button>
 
-                <img 
+                <img referrerPolicy="no-referrer" 
                   src={product.image} 
                   alt={product.name} 
                   className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity hover:mix-blend-normal"

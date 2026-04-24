@@ -15,7 +15,7 @@ export default function AboutCTA() {
           >
             <div className="flex items-center justify-center sm:justify-start gap-3 mb-6">
               <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10 p-0.5 bg-black flex items-center justify-center">
-                <img 
+                <img referrerPolicy="no-referrer" 
                   src="https://i.imgur.com/qtIpeq8.png" 
                   alt="Flash Imports Logo" 
                   className="w-full h-full object-cover rounded-full"

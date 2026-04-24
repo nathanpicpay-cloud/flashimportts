@@ -33,7 +33,7 @@ export default function Categories() {
               className="group relative bg-[#121212] border border-white/5 rounded-lg overflow-hidden flex flex-col aspect-[4/5] hover:border-[#FFC107]/50 transition-colors"
             >
               <div className="absolute inset-0 z-0">
-                <img 
+                <img referrerPolicy="no-referrer" 
                   src={cat.image} 
                   alt={cat.name} 
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity"

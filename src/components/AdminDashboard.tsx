@@ -36,7 +36,7 @@ export default function AdminDashboard() {
         <div className="h-20 sm:h-24 flex items-center justify-between px-6 border-b border-white/5">
            <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-black border border-white/10 flex items-center justify-center p-0.5">
-              <img src="https://i.imgur.com/qtIpeq8.png" alt="Logo" className="w-full h-full object-cover rounded-full" />
+              <img referrerPolicy="no-referrer" src="https://i.imgur.com/qtIpeq8.png" alt="Logo" className="w-full h-full object-cover rounded-full" />
             </div>
             <div className="flex flex-col">
               <span className="text-lg font-black font-heading uppercase italic tracking-tighter leading-tight">Admin</span>
@@ -236,7 +236,7 @@ function ProductsView() {
         {products.map(p => (
           <div key={p.id} className="bg-[#0A0A0A] border border-white/5 rounded-xl overflow-hidden flex flex-col group">
             <div className="h-40 bg-[#111] relative border-b border-white/5">
-              <img src={p.image} alt={p.name} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+              <img referrerPolicy="no-referrer" src={p.image} alt={p.name} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
               {p.discount && <div className="absolute top-2 left-2 bg-[#FFC107] text-black text-[10px] font-bold px-2 py-0.5 rounded-sm">{p.discount}</div>}
               <button onClick={() => deleteProduct(p.id)} className="absolute top-2 right-2 bg-red-500/80 text-white p-2 rounded-full hover:bg-red-500 transition-colors">
                 <Trash2 size={14} />
@@ -292,7 +292,7 @@ function CategoriesView() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {categories.map(c => (
           <div key={c.id} className="bg-[#121212] border border-white/5 rounded-xl flex items-center justify-between p-4 group relative overflow-hidden">
-            <div className="absolute inset-0 opacity-20"><img src={c.image} alt="" className="w-full h-full object-cover" /></div>
+            <div className="absolute inset-0 opacity-20"><img referrerPolicy="no-referrer" src={c.image} alt="" className="w-full h-full object-cover" /></div>
             <div className="absolute inset-0 bg-[#000]/60"></div>
             <div className="flex items-center gap-3 relative z-10">
               <span className="text-2xl">{c.icon}</span>
