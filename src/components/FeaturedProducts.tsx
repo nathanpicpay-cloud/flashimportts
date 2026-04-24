@@ -46,9 +46,12 @@ export default function FeaturedProducts() {
                   <Heart className="w-5 h-5" />
                 </button>
 
-                <img referrerPolicy="no-referrer" 
+                <img 
                   src={product.image} 
                   alt={product.name} 
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  onError={(e) => { e.currentTarget.src = "https://via.placeholder.com/600x800/121212/FFFFFF?text=Imagem+Indisponivel"; }}
                   className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity hover:mix-blend-normal"
                 />
                 

@@ -47,7 +47,7 @@ export default function LookBuilder() {
                   transition={{ type: "spring", stiffness: 200, damping: 20 }}
                   className="relative aspect-square md:aspect-auto rounded-xl overflow-hidden bg-[#050505] border border-white/5 flex items-center justify-center p-4 group"
                 >
-                  <img referrerPolicy="no-referrer" src={selectedShirt.image} alt={selectedShirt.name} className="w-full h-full object-cover rounded-lg opacity-90 group-hover:opacity-100 transition-opacity mix-blend-luminosity hover:mix-blend-normal" />
+                  <img src={selectedShirt.image} alt={selectedShirt.name} className="w-full h-full object-cover rounded-lg opacity-90 group-hover:opacity-100 transition-opacity mix-blend-luminosity hover:mix-blend-normal" />
                   <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-sm border border-white/10 text-[10px] font-bold uppercase tracking-widest text-[#F5F5F5]">Superior</div>
                 </motion.div>
               </AnimatePresence>
@@ -60,7 +60,7 @@ export default function LookBuilder() {
                   transition={{ type: "spring", stiffness: 200, damping: 20 }}
                   className="relative aspect-square md:aspect-auto rounded-xl overflow-hidden bg-[#050505] border border-white/5 flex items-center justify-center p-4 group"
                 >
-                  <img referrerPolicy="no-referrer" src={selectedShorts.image} alt={selectedShorts.name} className="w-full h-full object-cover rounded-lg opacity-90 group-hover:opacity-100 transition-opacity mix-blend-luminosity hover:mix-blend-normal" />
+                  <img src={selectedShorts.image} alt={selectedShorts.name} className="w-full h-full object-cover rounded-lg opacity-90 group-hover:opacity-100 transition-opacity mix-blend-luminosity hover:mix-blend-normal" />
                   <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-sm border border-white/10 text-[10px] font-bold uppercase tracking-widest text-[#F5F5F5]">Inferior</div>
                 </motion.div>
               </AnimatePresence>
@@ -107,7 +107,7 @@ export default function LookBuilder() {
                      whileHover={{ x: 4 }}
                      className={`p-3 rounded-lg border flex items-center gap-4 cursor-pointer transition-colors ${selectedShirt.id === shirt.id ? 'bg-[#1A1A1A] border-[#FFC107]' : 'bg-[#050505] border-white/5 hover:border-[#FFC107]/50'}`}
                    >
-                     <img referrerPolicy="no-referrer" src={shirt.image} className="w-12 h-12 rounded object-cover" alt="" />
+                     <img src={shirt.image} className="w-12 h-12 rounded object-cover" alt="" />
                      <div>
                        <div className="text-xs font-bold">{shirt.name}</div>
                        <div className="text-[10px] text-white/40 mt-1">R$ {shirt.price.toFixed(2).replace('.', ',')}</div>
@@ -140,7 +140,7 @@ export default function LookBuilder() {
                      whileHover={{ x: 4 }}
                      className={`p-3 rounded-lg border flex items-center gap-4 cursor-pointer transition-colors ${selectedShorts.id === item.id ? 'bg-[#1A1A1A] border-[#FFC107]' : 'bg-[#050505] border-white/5 hover:border-[#FFC107]/50'}`}
                    >
-                     <img referrerPolicy="no-referrer" src={item.image} className="w-12 h-12 rounded object-cover" alt="" />
+                     <img src={item.image} className="w-12 h-12 rounded object-cover" alt="" />
                      <div>
                        <div className="text-xs font-bold">{item.name}</div>
                        <div className="text-[10px] text-white/40 mt-1">R$ {item.price.toFixed(2).replace('.', ',')}</div>

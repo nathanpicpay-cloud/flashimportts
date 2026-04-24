@@ -54,7 +54,7 @@ export default function ReadyOutfits() {
               </motion.button>
             </div>
             
-            <img referrerPolicy="no-referrer" 
+            <img 
               src={outfit.image} 
               alt={outfit.name}
               className="absolute right-0 bottom-0 h-48 md:h-56 w-auto object-cover opacity-50 group-hover:opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500 rounded-br-3xl pointer-events-none"

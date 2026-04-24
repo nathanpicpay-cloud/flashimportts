@@ -33,9 +33,12 @@ export default function Categories() {
               className="group relative bg-[#121212] border border-white/5 rounded-lg overflow-hidden flex flex-col aspect-[4/5] hover:border-[#FFC107]/50 transition-colors"
             >
               <div className="absolute inset-0 z-0">
-                <img referrerPolicy="no-referrer" 
+                <img 
                   src={cat.image} 
                   alt={cat.name} 
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  onError={(e) => { e.currentTarget.src = "https://via.placeholder.com/600x800/121212/FFFFFF?text=Categoria"; }}
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/50 to-transparent"></div>
