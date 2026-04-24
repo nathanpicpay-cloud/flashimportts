@@ -151,8 +151,20 @@ function ConfigView() {
   const [whatsappUrl, setWhatsappUrl] = useState(hero.whatsappUrl);
   const [saved, setSaved] = useState(false);
 
+  const formatImageUrl = (url: string) => {
+    if (!url) return '';
+    if (url.includes('imgur.com') && !url.includes('i.imgur.com')) {
+      const parts = url.split('/');
+      const lastPart = parts[parts.length - 1];
+      if (lastPart && !lastPart.includes('.')) {
+        return `https://i.imgur.com/${lastPart}.png`;
+      }
+    }
+    return url;
+  };
+
   const handleSave = () => {
-    updateHero({ logoUrl, whatsappUrl });
+    updateHero({ logoUrl: formatImageUrl(logoUrl), whatsappUrl });
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
   };
@@ -200,9 +212,21 @@ function ProductsView() {
   const [isAdding, setIsAdding] = useState(false);
   const [newProduct, setNewProduct] = useState<Partial<Product>>({ name: '', price: 0, image: '', category: '', discount: '' });
 
+  const formatImageUrl = (url: string) => {
+    if (!url) return '';
+    if (url.includes('imgur.com') && !url.includes('i.imgur.com')) {
+      const parts = url.split('/');
+      const lastPart = parts[parts.length - 1];
+      if (lastPart && !lastPart.includes('.')) {
+        return `https://i.imgur.com/${lastPart}.png`;
+      }
+    }
+    return url;
+  };
+
   const handleAdd = () => {
     if (newProduct.name && newProduct.price !== undefined && newProduct.image) {
-      addProduct({ id: `p_${Date.now()}`, ...newProduct } as Product);
+      addProduct({ id: `p_${Date.now()}`, ...newProduct, image: formatImageUrl(newProduct.image!) } as Product);
       setIsAdding(false);
       setNewProduct({ name: '', price: 0, image: '', category: '', discount: '' });
     }
@@ -269,9 +293,21 @@ function CategoriesView() {
   const [isAdding, setIsAdding] = useState(false);
   const [newCat, setNewCat] = useState<Partial<Category>>({ name: '', image: '', icon: '' });
 
+  const formatImageUrl = (url: string) => {
+    if (!url) return '';
+    if (url.includes('imgur.com') && !url.includes('i.imgur.com')) {
+      const parts = url.split('/');
+      const lastPart = parts[parts.length - 1];
+      if (lastPart && !lastPart.includes('.')) {
+        return `https://i.imgur.com/${lastPart}.png`;
+      }
+    }
+    return url;
+  };
+
   const handleAdd = () => {
     if (newCat.name && newCat.image && newCat.icon) {
-      addCategory({ id: `c_${Date.now()}`, ...newCat } as Category);
+      addCategory({ id: `c_${Date.now()}`, ...newCat, image: formatImageUrl(newCat.image!) } as Category);
       setIsAdding(false);
       setNewCat({ name: '', image: '', icon: '' });
     }
