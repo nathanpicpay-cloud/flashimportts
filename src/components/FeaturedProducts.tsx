@@ -1,8 +1,10 @@
 import { motion } from 'motion/react';
 import { Heart, ArrowRight } from 'lucide-react';
-import { featuredProducts } from '../data/mockData';
+import { useSiteStore } from '../store/useSiteStore';
 
 export default function FeaturedProducts() {
+  const featuredProducts = useSiteStore(state => state.products);
+
   return (
     <section id="produtos" className="py-12 w-full">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">

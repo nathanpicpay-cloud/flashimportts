@@ -1,16 +1,10 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
-
-const categories = [
-  { id: 'c1', name: 'CAMISETAS', image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80', icon: '👕' },
-  { id: 'c2', name: 'POLOS', image: 'https://images.unsplash.com/photo-1596755094514-f87e32f85223?auto=format&fit=crop&w=600&q=80', icon: '👔' },
-  { id: 'c3', name: 'BERMUDAS', image: 'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=600&q=80', icon: '🩳' },
-  { id: 'c4', name: 'CALÇAS', image: 'https://images.unsplash.com/photo-1542272604-787c38355620?auto=format&fit=crop&w=600&q=80', icon: '👖' },
-  { id: 'c5', name: 'CALÇADOS', image: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=600&q=80', icon: '👟' },
-  { id: 'c6', name: 'ACESSÓRIOS', image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80', icon: '🧢' },
-];
+import { useSiteStore } from '../store/useSiteStore';
 
 export default function Categories() {
+  const categories = useSiteStore(state => state.categories);
+
   return (
     <section id="categorias" className="py-12 w-full">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">

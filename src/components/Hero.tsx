@@ -1,7 +1,10 @@
 import { motion } from 'motion/react';
 import { ShieldCheck, Truck, Award, Headphones, ArrowRight } from 'lucide-react';
+import { useSiteStore } from '../store/useSiteStore';
 
 export default function Hero() {
+  const { hero } = useSiteStore();
+
   return (
     <section className="relative w-full pt-28 sm:pt-32">
       
@@ -18,14 +21,16 @@ export default function Hero() {
           >
             <div className="flex flex-col relative z-10 w-full lg:w-auto items-center lg:items-start mb-4 sm:mb-6">
               <img 
-                src="https://i.imgur.com/ofizn4V.png" 
+                src={hero.logoUrl} 
                 alt="Flash Imports" 
                 className="w-full max-w-[280px] sm:max-w-lg lg:max-w-xl object-contain drop-shadow-2xl"
               />
             </div>
 
             <motion.a 
-              href="https://wa.me/5575991148518"
+              href={hero.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="mt-6 sm:mt-8 flex items-center gap-3 bg-[#111111] border border-white/10 px-5 py-3 sm:px-6 sm:py-3 rounded-full hover:border-[#25D366] transition-colors cursor-pointer group"
