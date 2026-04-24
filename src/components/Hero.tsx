@@ -16,27 +16,12 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center justify-center text-center lg:text-left lg:items-start relative"
           >
-            {/* Logo Silhouette/Bolt representation */}
-            <div className="relative mb-6">
-               <svg className="w-40 h-40 text-[#FFC107] drop-shadow-[0_0_30px_rgba(255,193,7,0.3)]" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-               </svg>
-            </div>
-
-            <div className="flex flex-col relative z-10 w-full lg:w-auto items-center lg:items-start">
-              <h1 className="text-6xl md:text-8xl font-black font-heading uppercase italic tracking-tighter text-white leading-[0.8] drop-shadow-2xl">
-                FLASH
-              </h1>
-              <h2 className="text-6xl md:text-8xl font-black font-heading uppercase italic tracking-tighter text-[#FFC107] leading-[0.8] drop-shadow-2xl mb-4">
-                -IMPORTS
-              </h2>
-              <div className="flex items-center gap-4 w-full justify-center lg:justify-start">
-                <div className="h-[2px] flex-1 bg-white/20"></div>
-                <p className="text-lg md:text-xl font-bold tracking-[0.3em] font-heading text-white whitespace-nowrap">
-                  LOJA MASCULINA
-                </p>
-                <div className="h-[2px] flex-1 bg-white/20"></div>
-              </div>
+            <div className="flex flex-col relative z-10 w-full lg:w-auto items-center lg:items-start mb-6">
+              <img 
+                src="https://i.imgur.com/ofizn4V.png" 
+                alt="Flash Imports" 
+                className="w-full max-w-lg lg:max-w-xl object-contain drop-shadow-2xl"
+              />
             </div>
 
             <motion.a 

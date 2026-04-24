@@ -16,11 +16,15 @@ export default function Navbar() {
           <Menu className="w-6 h-6" />
         </button>
 
-        {/* Logo Text (fallback for smaller screens or simple representation) */}
-        <div className="flex items-center gap-2 cursor-pointer">
-          <svg className="w-8 h-8 text-[#FFC107]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-          </svg>
+        {/* Logo */}
+        <div className="flex items-center gap-3 cursor-pointer">
+          <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 p-0.5 bg-black flex items-center justify-center">
+            <img 
+              src="https://i.imgur.com/qtIpeq8.png" 
+              alt="Flash Imports Logo" 
+              className="w-full h-full object-cover rounded-full"
+            />
+          </div>
           <div className="flex flex-col hidden sm:flex">
             <span className="text-xl font-black font-heading tracking-tighter uppercase italic text-white leading-none">Flash <span className="text-[#FFC107]">Imports</span></span>
             <span className="text-[9px] font-bold tracking-widest text-[#FFC107] mt-1 border-t border-white/10 pt-0.5">LOJA MASCULINA</span>

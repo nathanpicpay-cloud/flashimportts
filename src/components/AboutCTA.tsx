@@ -13,10 +13,14 @@ export default function AboutCTA() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex items-center justify-center sm:justify-start gap-2 mb-6">
-              <svg className="w-8 h-8 text-[#FFC107]" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-              </svg>
+            <div className="flex items-center justify-center sm:justify-start gap-3 mb-6">
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10 p-0.5 bg-black flex items-center justify-center">
+                <img 
+                  src="https://i.imgur.com/qtIpeq8.png" 
+                  alt="Flash Imports Logo" 
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
               <span className="text-2xl font-black font-heading tracking-tighter uppercase italic text-white">Flash <span className="text-[#FFC107]">Imports</span></span>
             </div>
             
