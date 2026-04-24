@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ShoppingBag, Menu, Search } from 'lucide-react';
+import { ShoppingBag, Search, User, Menu } from 'lucide-react';
 
 export default function Navbar() {
   return (
@@ -7,43 +7,47 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/80 backdrop-blur-md border-b border-white/5"
+      className="fixed top-0 left-0 right-0 z-50 bg-[#050505]/80 backdrop-blur-md border-b border-white/5"
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <div className="flex items-center gap-6">
-          <button className="lg:hidden text-[#F5F5F5] hover:text-[#D4AF37] transition-colors">
-            <Menu className="w-6 h-6" />
-          </button>
-          
-          <div className="flex items-center gap-2">
-            <motion.div 
-              whileHover={{ rotate: 90 }}
-              transition={{ type: "spring", stiffness: 200, damping: 10 }}
-              className="w-8 h-8 bg-gradient-to-br from-[#D4AF37] to-[#1E90FF] rounded-sm flex items-center justify-center font-bold text-black"
-            >
-              F
-            </motion.div>
-            <span className="text-2xl font-black font-heading tracking-tighter uppercase italic text-white hidden sm:block">Flash <span className="text-[#D4AF37]">Imports</span></span>
+      <div className="max-w-[1400px] mx-auto px-6 h-24 flex items-center justify-between">
+        
+        {/* Mobile Menu */}
+        <button className="lg:hidden text-white hover:text-[#FFC107] transition-colors">
+          <Menu className="w-6 h-6" />
+        </button>
+
+        {/* Logo Text (fallback for smaller screens or simple representation) */}
+        <div className="flex items-center gap-2 cursor-pointer">
+          <svg className="w-8 h-8 text-[#FFC107]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          </svg>
+          <div className="flex flex-col hidden sm:flex">
+            <span className="text-xl font-black font-heading tracking-tighter uppercase italic text-white leading-none">Flash <span className="text-[#FFC107]">Imports</span></span>
+            <span className="text-[9px] font-bold tracking-widest text-[#FFC107] mt-1 border-t border-white/10 pt-0.5">LOJA MASCULINA</span>
           </div>
         </div>
 
-        <div className="hidden lg:flex gap-8 text-[11px] uppercase tracking-[0.2em] font-medium font-body">
-          <a href="#collection" className="text-[#D4AF37] border-b border-[#D4AF37] pb-1">Coleção</a>
-          <a href="#build-look" className="hover:text-[#D4AF37] transition-colors pb-1">Monte seu Look</a>
-          <a href="#about" className="hover:text-[#D4AF37] transition-colors pb-1">Sobre Nós</a>
+        {/* Desktop Links - Centralized */}
+        <div className="hidden lg:flex gap-10 text-[11px] uppercase tracking-widest font-bold font-body">
+          <a href="#inicio" className="text-[#FFC107] border-b-2 border-[#FFC107] pb-1">Início</a>
+          <a href="#produtos" className="text-white hover:text-[#FFC107] transition-colors pb-1">Produtos</a>
+          <a href="#categorias" className="text-white hover:text-[#FFC107] transition-colors pb-1">Categorias</a>
+          <a href="#sobre" className="text-white hover:text-[#FFC107] transition-colors pb-1">Sobre Nós</a>
+          <a href="#contato" className="text-white hover:text-[#FFC107] transition-colors pb-1">Contato</a>
         </div>
 
-        <div className="flex items-center gap-4">
-          <button className="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center cursor-pointer hover:border-[#D4AF37] transition-colors text-white hidden sm:flex">
-            <Search className="w-4 h-4" />
+        {/* Icons Right */}
+        <div className="flex items-center gap-6">
+          <button className="text-white hover:text-[#FFC107] transition-colors duration-200">
+            <Search className="w-5 h-5" />
           </button>
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-4 h-10 border border-[#D4AF37] rounded-full flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-colors"
-          >
-            Carrinho [0]
-          </motion.button>
+          <button className="text-white hover:text-[#FFC107] transition-colors duration-200 hidden sm:block">
+            <User className="w-5 h-5" />
+          </button>
+          <button className="relative text-white hover:text-[#FFC107] transition-colors duration-200">
+            <ShoppingBag className="w-5 h-5" />
+            <span className="absolute -top-2 -right-2 bg-[#FFC107] text-black text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+          </button>
         </div>
       </div>
     </motion.nav>

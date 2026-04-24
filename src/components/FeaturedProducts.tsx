@@ -1,55 +1,69 @@
 import { motion } from 'motion/react';
+import { Heart, ArrowRight } from 'lucide-react';
 import { featuredProducts } from '../data/mockData';
 
 export default function FeaturedProducts() {
   return (
-    <section className="py-6 max-w-7xl mx-auto px-4 sm:px-6">
-      
-      <div className="grid lg:grid-cols-12 gap-4">
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="lg:col-span-12 bg-white rounded-3xl p-6 flex flex-col sm:flex-row justify-between sm:items-center"
-        >
-            <div>
-              <h3 className="text-black text-2xl font-black font-heading uppercase italic tracking-tight mb-2">O Arsenal</h3>
-              <p className="text-black/60 text-xs font-medium max-w-md">Acessórios e peças essenciais que transformam o básico em uma declaração de intenções.</p>
-            </div>
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="mt-4 sm:mt-0 px-6 py-3 bg-black text-white font-black uppercase text-[10px] tracking-[0.2em] rounded-xl flex-shrink-0 hover:bg-[#D4AF37] hover:text-black transition-colors"
-            >
-              Explorar Arsenal
-            </motion.button>
-        </motion.div>
+    <section id="produtos" className="py-12 w-full">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+        
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 border-b border-white/5 pb-4">
+          <div>
+            <h4 className="text-[#FFC107] text-xs font-bold uppercase tracking-widest mb-2">PRODUTOS EM DESTAQUE</h4>
+            <h2 className="text-white text-3xl md:text-4xl font-bold">Os mais vendidos</h2>
+          </div>
+          <button className="mt-4 sm:mt-0 flex items-center gap-2 text-[#FFC107] font-bold text-xs uppercase tracking-widest hover:text-white transition-colors">
+            VER TODOS <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
 
-        <div className="lg:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+        {/* Products Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {featuredProducts.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
-              whileHover={{ y: -8 }}
-              className="bg-[#151515] rounded-3xl border border-white/5 p-4 flex flex-col group cursor-pointer"
+              className="group cursor-pointer flex flex-col"
             >
-              <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-[#0A0A0A] border border-white/5 relative mb-4">
+              {/* Image Container */}
+              <div className="relative aspect-[4/5] bg-[#121212] rounded-lg overflow-hidden border border-white/5 mb-4 isolate">
+                
+                {/* Discount Badge */}
+                {product.discount && (
+                  <div className="absolute top-3 left-3 z-20 bg-[#FFC107] text-black text-[10px] font-bold px-2 py-0.5 rounded-sm">
+                    {product.discount}
+                  </div>
+                )}
+
+                {/* Like Button */}
+                <button className="absolute top-3 right-3 z-20 text-white/50 hover:text-white transition-colors">
+                  <Heart className="w-5 h-5" />
+                </button>
+
                 <img 
                   src={product.image} 
                   alt={product.name} 
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 mix-blend-luminosity group-hover:mix-blend-normal group-hover:scale-110"
+                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-luminosity hover:mix-blend-normal"
                 />
-                <div className="absolute top-3 left-3">
-                  <span className="text-[9px] uppercase font-bold tracking-widest text-black bg-[#D4AF37] px-2 py-1 rounded">
-                    {product.category}
-                  </span>
-                </div>
+                
+                {/* Overlay gradient for better shadow/depth */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-40"></div>
               </div>
-              <h3 className="font-bold uppercase text-xs tracking-wider mb-1 text-white/90 group-hover:text-white">{product.name}</h3>
-              <p className="font-black font-heading italic text-sm text-[#D4AF37]">R$ {product.price}</p>
+              
+              {/* Product Info */}
+              <div className="flex flex-col items-center text-center">
+                <span className="text-[#FFC107] text-[9px] uppercase font-bold tracking-widest mb-1">{product.category}</span>
+                <h3 className="text-white/90 text-sm font-bold uppercase tracking-wider mb-2 group-hover:text-white transition-colors">{product.name}</h3>
+                
+                {/* Price (simplified for visual match) */}
+                <span className="text-white font-bold text-lg border-t border-white/10 pt-2 w-full text-center">
+                  R$ {product.price.toFixed(2).replace('.', ',')}
+                </span>
+              </div>
             </motion.div>
           ))}
         </div>

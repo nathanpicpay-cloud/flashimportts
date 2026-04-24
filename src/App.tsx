@@ -5,21 +5,23 @@
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import LookBuilder from './components/LookBuilder';
-import ReadyOutfits from './components/ReadyOutfits';
+import Categories from './components/Categories';
 import FeaturedProducts from './components/FeaturedProducts';
+import LookBuilder from './components/LookBuilder';
 import SocialProof from './components/SocialProof';
 import AboutCTA from './components/AboutCTA';
+import NeonParticles from './components/NeonParticles';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#F5F5F5] font-body selection:bg-[#D4AF37] selection:text-black">
+    <div className="min-h-screen text-white font-body selection:bg-[#FFC107] selection:text-black">
+      <NeonParticles />
       <Navbar />
-      <main className="pb-12 lg:space-y-4">
+      <main className="w-full">
         <Hero />
-        <LookBuilder />
-        <ReadyOutfits />
+        <Categories />
         <FeaturedProducts />
+        <LookBuilder />
         <SocialProof />
       </main>
       <AboutCTA />
