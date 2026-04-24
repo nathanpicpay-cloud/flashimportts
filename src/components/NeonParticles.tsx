@@ -11,12 +11,40 @@ export default function NeonParticles() {
 
     let animationFrameId: number;
     let particles: any[] = [];
+    
+    let mouse = { x: -1000, y: -1000, isActive: false };
+
+    const onMove = (e: MouseEvent | TouchEvent) => {
+      let clientX, clientY;
+      if (e instanceof MouseEvent) {
+         clientX = e.clientX;
+         clientY = e.clientY;
+      } else if (window.TouchEvent && e instanceof TouchEvent && e.touches && e.touches.length > 0) {
+         clientX = e.touches[0].clientX;
+         clientY = e.touches[0].clientY;
+      }
+      
+      if (clientX !== undefined && clientY !== undefined) {
+         mouse.x = clientX;
+         mouse.y = clientY;
+         mouse.isActive = true;
+      }
+    };
+
+    const onLeave = () => {
+       mouse.isActive = false;
+    };
 
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
+
     window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('touchmove', onMove, { passive: true });
+    window.addEventListener('mouseout', onLeave);
+    window.addEventListener('touchend', onLeave);
     resize();
 
     // Cores da marca: Dourado, Azul elétrico e Branco intenso
@@ -41,24 +69,50 @@ export default function NeonParticles() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // Add a virtual particle for the mouse if active, so lightning connects to it
+      let activeParticles = particles;
+      if (mouse.isActive) {
+        const mouseParticle = {
+           x: mouse.x,
+           y: mouse.y,
+           vx: 0,
+           vy: 0,
+           color: '#ffffff',
+           size: 0, 
+        };
+        activeParticles = [...particles, mouseParticle];
+      }
+
       // Movimentação e desenho dos pontos base
       particles.forEach((p, i) => {
+        // Atração pelo mouse
+        if (mouse.isActive) {
+           const dx = mouse.x - p.x;
+           const dy = mouse.y - p.y;
+           const dist = Math.sqrt(dx*dx + dy*dy);
+           if (dist < 400) { // Raio de atração
+              const force = (400 - dist) / 400;
+              p.vx += (dx / dist) * force * 0.4;
+              p.vy += (dy / dist) * force * 0.4;
+           }
+        }
+
         // Movimento errático, semelhante a eletricidade estática
         if (Math.random() > 0.8) {
           p.vx += (Math.random() - 0.5) * 2;
           p.vy += (Math.random() - 0.5) * 2;
         }
         
-        // Limite de velocidade para não sumir rápido
-        p.vx = Math.max(-2, Math.min(2, p.vx));
-        p.vy = Math.max(-2, Math.min(2, p.vy));
+        // Limite de velocidade
+        p.vx = Math.max(-2.5, Math.min(2.5, p.vx));
+        p.vy = Math.max(-2.5, Math.min(2.5, p.vy));
 
         p.x += p.vx;
         p.y += p.vy;
         p.life++;
 
         // Renasce se morrer ou sair da tela
-        if (p.life > p.maxLife || p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) {
+        if (p.life > p.maxLife || p.x < -100 || p.x > canvas.width + 100 || p.y < -100 || p.y > canvas.height + 100) {
           particles[i] = createParticle(Math.random() * canvas.width, canvas.height + 10);
         }
 
@@ -73,37 +127,39 @@ export default function NeonParticles() {
       });
 
       // Conexões elétricas (Lightning/Raios)
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
+      for (let i = 0; i < activeParticles.length; i++) {
+        for (let j = i + 1; j < activeParticles.length; j++) {
+          const dx = activeParticles[i].x - activeParticles[j].x;
+          const dy = activeParticles[i].y - activeParticles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          const maxDist = 120; // Distância de "choque"
+          // Aumenta o raio de alcance para considerar ligações ao mouse
+          const isMouseConnection = (i === activeParticles.length - 1) || (j === activeParticles.length - 1);
+          const maxDist = isMouseConnection ? 250 : 120; // Distância de "choque"
 
           if (dist < maxDist) {
             ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.moveTo(activeParticles[i].x, activeParticles[i].y);
 
             // Zig-zag para imitar raios dinâmicos
-            const segments = 3;
+            const segments = isMouseConnection ? 5 : 3;
             for (let k = 1; k < segments; k++) {
               const t = k / segments;
-              const midX = particles[i].x + dx * -t + (Math.random() - 0.5) * 15;
-              const midY = particles[i].y + dy * -t + (Math.random() - 0.5) * 15;
+              const midX = activeParticles[i].x + dx * -t + (Math.random() - 0.5) * 20;
+              const midY = activeParticles[i].y + dy * -t + (Math.random() - 0.5) * 20;
               ctx.lineTo(midX, midY);
             }
             
-            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.lineTo(activeParticles[j].x, activeParticles[j].y);
 
             const opacity = 1 - (dist / maxDist);
             
             // Halo de neon envolta do raio
-            ctx.strokeStyle = particles[i].color;
+            ctx.strokeStyle = activeParticles[i].color;
             ctx.globalAlpha = opacity * 0.7;
             ctx.lineWidth = 1.5;
             ctx.shadowBlur = 10;
-            ctx.shadowColor = particles[i].color;
+            ctx.shadowColor = activeParticles[i].color;
             ctx.stroke();
 
             // Core branco brilhante no centro da linha
@@ -125,6 +181,10 @@ export default function NeonParticles() {
 
     return () => {
       window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('touchmove', onMove);
+      window.removeEventListener('mouseout', onLeave);
+      window.removeEventListener('touchend', onLeave);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
